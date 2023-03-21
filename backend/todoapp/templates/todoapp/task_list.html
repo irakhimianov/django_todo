@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="search container">
+    <form class="search__item" method="GET">
+        <div class="search__input">
+            <div class="ui input">
+                <input type="text" name="search_field" value="{{ search_context }}" placeholder="Поиск задачи...">
+                <input class="ui huge button" type="submit" value="Поиск">
+            </div>
+        </div>
+    </form>
+    <div class="search__item">
+        <a href="{% url 'task_create' %}" class="circular ui huge icon button">
+            <i class="icon plus"></i>
+        </a>
+    </div>
+</div>
+<div class="tasks container">
+    {% for task in task_list %}
+    <div class="ui segment tasks__item">
+        <div class="item__title">
+            {% if task.is_completed %}
+                <div class="task__complete"></div>
+                <i><s><a href="{% url 'task' pk=task.id %}">{{ task|capfirst }}</a></s></i>
+            {% else %}
+                <div class="task__incomplete"></div>
+                <a href="{% url 'task' pk=task.id %}">{{ task|capfirst }}</a>
+            {% endif %}
+        </div>
+        <div class="item__manage">
+            <a href="{% url 'task_delete' pk=task.id %}" class="circular ui huge icon button">
+                <i class="icon close"></i>
+            </a>
+        </div>
+    </div>
+    {% empty %}
+    <div class="container__message">
+        <h3>Не найдено ни одной задачи</h3>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}

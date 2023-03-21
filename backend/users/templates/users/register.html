@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <form class="ui huge form" method="POST">
+        {% csrf_token%}
+        <div class="field">
+            <span>Логин</span>
+            {{ form.username }}
+        </div>
+        <div class="field">
+            <span>Пароль</span>
+            {{ form.password1 }}
+        </div>
+        <div class="field">
+            <span>Подтвердите пароль</span>
+            {{ form.password2 }}
+        </div>
+        <input class="ui huge button" type="submit" value="Зарегистрироваться">
+    </form>
+    <div class="ui divider"></div>
+    <div class="task__item">
+        <span>Есть аккаунт?<a href="{% url 'login' %}"> Войти</a></span>
+
+    </div>
+</div>
+
+{% endblock content %}

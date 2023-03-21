@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <a href="{% url 'task_list' %}" class="circular ui huge icon button">
+        <i class="icon angle left"></i>
+    </a>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="task__item">
+            <p>Удалить задание
+                <a href="{%url 'task' pk=task.id%}">{{ task.title }}</a>?
+            </p>
+        </div>
+        <div class="ui divider"></div>
+        <div class="task__item">
+            <input class="ui huge button" type="submit" value="Удалить"></input>
+        </div>
+    </form>
+
+</div>
+
+
+{% endblock content %}

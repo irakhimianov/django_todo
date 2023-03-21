@@ -1,0 +1,16 @@
+{% load static %}
+<header class="header">
+    <nav class="header__nav">
+        <ul class="header__menu">
+            <li class="header__menu-item"><a href="{% url 'swagger' %}">API</a></li>
+            {% if request.user.is_authenticated %}
+            <li class="header__menu-item"><a href="{% url 'task_list' %}">Задачи</a></li>
+            <li class="header__menu-item"><a href="{% url 'task_create' %}">Добавить задачу</a></li>
+            <li class="header__menu-item"><a href="{% url 'logout' %}">Выйти</a></li>
+            {% else %}
+            <li class="header__menu-item"><a href="{% url 'login' %}">Войти</a></li>
+            <li class="header__menu-item"><a href="{% url 'register' %}">Регистрация</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>

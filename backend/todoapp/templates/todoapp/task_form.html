@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <a href="{% url 'task_list' %}" class="circular ui huge icon button">
+        <i class="icon angle left"></i>
+    </a>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="ui input task__item">
+            {{ form.title }}
+        </div>
+        <div class="task__item">
+            {{ form.description }}
+        </div>
+        <div class="task__item">
+            {{ form.is_completed }}
+            <span> Задача выполнена</span>
+        </div>
+        <div class="ui divider"></div>
+        <div class="task__item">
+            <input class="ui huge button" type="submit" value="OK">
+        </div>
+    </form>
+</div>
+{% endblock content %}
